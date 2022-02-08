@@ -1,5 +1,5 @@
 # Hello-Shop
-## Spring Boot, JPA(H2), Jquery
+## Spring Boot(Gradle), JPA(H2)
 ### Simple Shopping Mall Web
 - - -
 
