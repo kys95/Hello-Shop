@@ -1,2 +1,5 @@
 # Hello-Shop
-개인 스터디용 SpringBoot 프로젝트
+## Spring Boot, JPA(H2), Jquery
+### Simple Shopping Mall Web
+- - -
+
