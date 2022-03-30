@@ -43,10 +43,13 @@ public class MemberService {
          return memberRepository.findOne(memberId);
     }
 
+
+    // update할 때, return값은 없는게 나음. 있더라도 id값 정도만
     @Transactional
     public void update(Long id, String name) {
         Member member = memberRepository.findOne(id);
-        member.setName(name);
+        member.setName(name);   //스프링이 aop가 동작하면서 트랜잭션과 관련된 aop가 끝나는 시점에 커밋이 되어 그때 Jpa가 flush하고
+                                // 영속성 컨텍스트 커밋함 -> 변경 감지
     }
 }
 
