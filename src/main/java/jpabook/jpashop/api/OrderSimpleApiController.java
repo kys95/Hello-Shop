@@ -5,6 +5,8 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +29,7 @@ import java.util.stream.Collectors;
 public class OrderSimpleApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderSimpleQueryRepository orderSimpleQueryRepository;
 
     /**
      * V1. 엔티티 직접 노출
@@ -83,6 +86,11 @@ public class OrderSimpleApiController {
         return result;
     }
 
+    //DTO로 바로 조회하는 방법
+    @GetMapping("/api/v4/simple-orders")
+    public List<OrderSimpleQueryDto> ordersV4() {
+        return orderSimpleQueryRepository.findOrderDtos();
+    }
     @Data
     static class SimpleOrderDto{
         private Long orderId;
@@ -91,6 +99,7 @@ public class OrderSimpleApiController {
         private OrderStatus orderStatus;
         private Address address;
 
+        //Dto는 엔티티를 참조해도 상관없음
         public SimpleOrderDto(Order order) {
             orderId = order.getId();
             name = order.getMember().getName();     //Lazy 초기화
